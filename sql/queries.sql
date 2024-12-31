@@ -1,4 +1,4 @@
--- INSERT statements to populate the database
+-- INSERT data to populate the database
 INSERT INTO author (author_id, name, surname, birthdate) VALUES (1, 'Robert', 'Kiyosaki', '1947-04-08');
 INSERT INTO book (book_id, author_id, title, published) VALUES (1, 1, 'Rich Dad Poor Dad', '1997-04-01');
 INSERT INTO member (member_id, name, surname) VALUES (1, 'Palo', 'Habera');
@@ -19,16 +19,16 @@ WHERE loan.loan_date BETWEEN '2023-01-01' AND '2023-12-31';
 SELECT title
 FROM book
 WHERE author_id = (
-    SELECT author_id
-    FROM author
-    WHERE surname = 'Kiyosaki'
+	SELECT author_id
+	FROM author
+	WHERE surname = 'Kiyosaki'
 );
 
 -- SUBQUERY to find members who have not loaned books
 SELECT name, surname
 FROM member
 WHERE member_id NOT IN (
-    SELECT member_id FROM loan
+	SELECT member_id FROM loan
 );
 
 -- AGGREGATION & SORTING of loans per member
@@ -50,12 +50,12 @@ ADD CONSTRAINT unique_title_author UNIQUE (title, author_id);
 -- VIEW of active loans
 CREATE VIEW active_loans AS
 SELECT
-    loan.loan_id,
-    member.name AS member_name,
-    member.surname AS member_surname,
-    book.title AS book_title,
-    loan.loan_date,
-    loan.return_date
+	loan.loan_id,
+	member.name AS member_name,
+	member.surname AS member_surname,
+	book.title AS book_title,
+	loan.loan_date,
+	loan.return_date
 FROM loan
 JOIN member ON loan.member_id = member.member_id
 JOIN book ON loan.book_id = book.book_id
