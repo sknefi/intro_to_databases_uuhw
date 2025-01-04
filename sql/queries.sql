@@ -1,8 +1,4 @@
--- INSERT data to populate the database
-INSERT INTO author (author_id, name, surname, birthdate) VALUES (1, 'Robert', 'Kiyosaki', '1947-04-08');
-INSERT INTO book (book_id, author_id, title, published) VALUES (1, 1, 'Rich Dad Poor Dad', '1997-04-01');
-INSERT INTO member (member_id, name, surname) VALUES (1, 'Palo', 'Habera');
-INSERT INTO loan (loan_id, member_id, book_id, loan_date, return_date) VALUES (1, 1, 1, '2023-01-15', '2023-02-15');
+------ MAIN SUBJECT: Library Database ------ 
 
 -- PROJECTION & SELECTION of members who have loaned books
 SELECT DISTINCT member.name, member.surname
