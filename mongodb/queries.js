@@ -90,6 +90,9 @@ db.book.createIndex({ title: 1 });
 // Index creation for unique books by title and author
 db.book.createIndex({ title: 1, author_id: 1 }, { unique: true });
 
+// Active loans selection
+db.loan.find({ return_date: { $gt: new Date() } });
+
 // Active loans view
 db.loan.aggregate([
   {
