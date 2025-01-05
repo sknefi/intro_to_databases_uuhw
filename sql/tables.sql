@@ -11,11 +11,19 @@ CREATE TABLE author (
 -- CREATE TABLE: book
 CREATE TABLE book (
 	book_id INT PRIMARY KEY,
-	author_id INT,
 	title VARCHAR(100) NOT NULL,
-	published DATE,
+	published DATE
+);
+
+-- CREATE TABLE: author_book
+CREATE TABLE author_book (
+	book_id INT,
+	author_id INT,
+	PRIMARY KEY (book_id, author_id),
+	FOREIGN KEY (book_id) REFERENCES book(book_id)
+		ON DELETE CASCADE,
 	FOREIGN KEY (author_id) REFERENCES author(author_id)
-		ON DELETE SET NULL
+		ON DELETE CASCADE
 );
 
 -- CREATE TABLE: member

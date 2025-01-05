@@ -1,4 +1,4 @@
------- MAIN SUBJECT: Library Database ------ 
+------ MAIN SUBJECT: Library Database ------
 
 -- PROJECTION & SELECTION of members who have loaned books
 SELECT DISTINCT member.name, member.surname
@@ -12,13 +12,11 @@ JOIN loan ON book.book_id = loan.book_id
 WHERE loan.loan_date BETWEEN '2023-01-01' AND '2023-12-31';
 
 -- SUBQUERY to find books by author 'Kiyosaki'
-SELECT title
+SELECT book.title
 FROM book
-WHERE author_id = (
-	SELECT author_id
-	FROM author
-	WHERE surname = 'Kiyosaki'
-);
+JOIN author_book ON book.book_id = author_book.book_id
+JOIN author ON author_book.author_id = author.author_id
+WHERE author.surname = 'Kiyosaki';
 
 -- SUBQUERY to find members who have not loaned books
 SELECT name, surname
@@ -34,7 +32,7 @@ JOIN loan ON member.member_id = loan.member_id
 GROUP BY member.name, member.surname
 ORDER BY loan_count DESC;
 
------- SOME BONUSES ------ 
+------ SOME BONUSES ------
 
 -- INDEXING of book titles
 CREATE INDEX idx_book_title ON book(title);

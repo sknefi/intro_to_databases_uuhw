@@ -8,6 +8,11 @@ VALUES (1, 'Robert', 'Kiyosaki', '1947-04-08');
 INSERT INTO book (book_id, author_id, title, published) 
 VALUES (1, 1, 'Rich Dad Poor Dad', '1997-04-01');
 
+-- INSERT DATA: author_book
+INSERT INTO author_book (book_id, author_id) 
+VALUES 
+(1, 1);
+
 -- INSERT DATA: member
 INSERT INTO member (member_id, name, surname) 
 VALUES (1, 'Palo', 'Habera');
